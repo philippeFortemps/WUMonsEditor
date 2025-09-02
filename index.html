@@ -1,0 +1,43 @@
+<!doctype html>
+<html dir="ltr">
+  <head>
+    <title>Blockly for WUKONG 2040</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="google" value="notranslate" />
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+    <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="toolbox_init.js"></script>
+    <script src="toolbox_wukong.js"></script>
+    <script src="toolbox_finisher.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body onload="init()">
+    <div class="app-container">
+      <div id="blocklyDiv" class="main"></div>
+      <div id="outputDiv" class="main">
+        <div id="buttonDiv">
+                <button id="copy-code-button" class="iconButton">      <i class="fa-solid fa-copy"></i>        COPY    </button>
+                <button id="save-blocks-button" class="iconButton">    <i class="fa-solid fa-download"></i> SAVE   </button>
+                <button id="load-blocks-button" class="iconButton">     <i class="fa-solid fa-upload"></i>     LOAD   </button>
+                <input type="file" id="file-input" style="display: none;" accept=".xml" />
+                <HR/>
+        </div>
+        <div id="codeDiv">
+                <pre id="codeHolder" class="prettyprint" dir="ltr"></pre>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
