@@ -1,6 +1,7 @@
 /**
  * @license
  * Copyright 2022 Google LLC 
+ * Copyright 2025 UMONS (for application to WUKONG 2040)
  * SPDX-License-Identifier: Apache-2.0
  */
 

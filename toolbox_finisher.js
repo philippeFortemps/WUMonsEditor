@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 UMONS (for the application to WUKONG 2040)
+ * Copyright 2025 UMONS (for  application to WUKONG 2040)
  * SPDX-License-Identifier: Apache-2.0
  */
  
