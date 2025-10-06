@@ -583,7 +583,7 @@ python.pythonGenerator.forBlock['colour_from_rgb'] = function(block, generator) 
     "   r = round(min(100, max(0, r)) * 2.55)",
     "   g = round(min(100, max(0, g)) * 2.55)",
     "   b = round(min(100, max(0, b)) * 2.55)",
-    "   return '#%02x%02x%02x' % (r, g, b)"].join('\n');
+    "   return (r << 16) | (g << 8) | b"].join('\n');
   return [code, generator.ORDER_NONE];
 } 
 
