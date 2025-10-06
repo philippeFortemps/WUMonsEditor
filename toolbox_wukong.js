@@ -24,17 +24,140 @@ toolboxJson.contents.push({
                 },
             },
         },
-        {   kind: 'BLOCK',  type: 'pause',              },
+        {   kind: 'BLOCK',  type: 'pause',
+            inputs: {
+              SECONDS: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 1},
+                },
+              },
+            },
+        },
         {   kind: 'BLOCK',  type: 'current_time',       },
         {   kind: 'LABEL',  text: 'On WUKONG',          },
         {   kind: 'BLOCK',  type: 'button_is_pressed',  },
-        {   kind: 'BLOCK',  type: 'set_led_colour',     },
-        {   kind: 'BLOCK',  type: 'set_both_leds_colour',    },
+        {   kind: 'BLOCK',  type: 'set_led_colour',     
+            inputs: {
+              COLOUR: {
+                block: {
+                  type: 'colour_from_rgb',
+                  inputs: {
+                    RED: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    GREEN: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    BLUE: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+        },
+        {   kind: 'BLOCK',  type: 'set_both_leds_colour',    
+            inputs: {
+              COLOUR0: {
+                block: {
+                  type: 'colour_from_rgb',
+                  inputs: {
+                    RED: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    GREEN: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    BLUE: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                  },
+                },
+              },
+              COLOUR1: {
+                block: {
+                  type: 'colour_from_rgb',
+                  inputs: {
+                    RED: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    GREEN: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                    BLUE: {
+                      shadow: {
+                        type: 'math_number',
+                        fields: {NUM: 0},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+        },
         {   kind: 'BLOCK',  type: 'play_music',         },
-        {   kind: 'BLOCK',  type: 'set_motor_power',    },
+        {   kind: 'BLOCK',  type: 'set_motor_power',    
+            inputs: {
+              POWER: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 100},
+                },
+              },
+            },
+        },
         {   kind: 'BLOCK',  type: 'reverse_motor',      },
-        {   kind: 'BLOCK',  type: 'set_servo_angle',    },
-        {   kind: 'BLOCK',  type: 'set_servo_pulse_range',    },
+        {   kind: 'BLOCK',  type: 'set_servo_angle',    
+            inputs: {
+              ANGLE: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 0},
+                },
+              },
+            },
+        },
+        {   kind: 'BLOCK',  type: 'set_servo_pulse_range',    
+            inputs: {
+              MINPULSE: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 750},
+                },
+              },
+              MAXPULSE: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 2250},
+                },
+              },
+            },
+        },
         {   kind: 'BLOCK',  type: 'get_sensor_value',   },
         {   kind: 'LABEL',  text: 'On WUKONG I2C-DFrobot-URM09',},
         {   kind: 'BLOCK',  type: 'get_distance_value', },
@@ -46,7 +169,28 @@ toolboxJson.contents.push({
         * {   kind: 'BLOCK',  type: 'rgb_button_set_colour', },                
         **/
         {   kind: 'LABEL',  text: 'Utils',              },        
-        {   kind: 'BLOCK',  type: 'colour_from_rgb',    },
+        {   kind: 'BLOCK',  type: 'colour_from_rgb',    
+            inputs: {
+              RED: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 0},
+                },
+              },
+              GREEN: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 0},
+                },
+              },
+              BLUE: {
+                shadow: {
+                  type: 'math_number',
+                  fields: {NUM: 0},
+                },
+              },
+            },
+        },
       ],
     });
 toolboxJson.contents.push({   kind: 'SEP',    }); 
@@ -83,7 +227,7 @@ Blockly.defineBlocksWithJsonArray([
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Pause the program for a given number of seconds",
     "helpUrl": "https://docs.circuitpython.org/en/latest/shared-bindings/time/#time.sleep"
-  },
+  },/**/
   {
     "type": "current_time",
     "message0": "current value of internal clock",
@@ -135,7 +279,7 @@ Blockly.defineBlocksWithJsonArray([
         "align": "RIGHT",
         "check": "Number",
       }
-    ],
+    ],/**/
     "output": "Colour",
     "colour": '%{BKY_MATH_HUE}',
     "inputsInline": true,
@@ -181,6 +325,7 @@ Blockly.defineBlocksWithJsonArray([
       {
         "type": "input_value",
         "name": "COLOUR1",
+        "align": "RIGHT",
         "check": "Colour",
       }
     ],
@@ -262,6 +407,26 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "set_servo_pulse_range",
     "message0": "set servo %1 pulse ranging from %2 to %3",
+    /*inputs: {
+      SERVO: {
+        shadow: {
+          type: 'field_dropdown',
+          fields: {NUM: 1},
+        },
+      },
+      MINPULSE: {
+        shadow: {
+          type: 'math_number',
+          fields: {NUM: 750},
+        },
+      },
+      MAXPULSE: {
+        shadow: {
+          type: 'math_number',
+          fields: {NUM: 2250},
+        },
+      },
+    },*/
     "args0": [
       {
         "type": "field_dropdown",
@@ -276,14 +441,16 @@ Blockly.defineBlocksWithJsonArray([
       {
         "type": "input_value",
         "name": "MINPULSE",
+        "align": "RIGHT",
         "check": "Number",
       },
       {
         "type": "input_value",
         "name": "MAXPULSE",
+        "align": "RIGHT",
         "check": "Number",
       }
-    ],
+    ],/**/
     "previousStatement": null,          "nextStatement": null,
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Set the selected servo pulse ranging into an interval",
