@@ -18,7 +18,7 @@ class DCMotor:
     def set_speed(self, speed = 0):
         setDCMotor = motor.DCMotor(self.pwmA, self.pwmB)
         self.speed = speed
-        setDCMotor.throttle = self.speed
+        setDCMotor.throttle = self.speed/100
 
 
 class Servo:
