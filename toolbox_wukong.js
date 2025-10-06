@@ -32,7 +32,9 @@ toolboxJson.contents.push({
         {   kind: 'BLOCK',  type: 'set_both_leds_colour',    },
         {   kind: 'BLOCK',  type: 'play_music',         },
         {   kind: 'BLOCK',  type: 'set_motor_power',    },
+        {   kind: 'BLOCK',  type: 'reverse_motor',      },
         {   kind: 'BLOCK',  type: 'set_servo_angle',    },
+        {   kind: 'BLOCK',  type: 'set_servo_pulse_range',    },
         {   kind: 'BLOCK',  type: 'get_sensor_value',   },
         {   kind: 'LABEL',  text: 'On WUKONG I2C-DFrobot-URM09',},
         {   kind: 'BLOCK',  type: 'get_distance_value', },
@@ -40,9 +42,9 @@ toolboxJson.contents.push({
         * {   kind: 'BLOCK',  type: 'get_temperature_value', },
         * {   kind: 'LABEL',  text: 'On WUKONG I2C-DFrobot-0646',},
         * {   kind: 'BLOCK',  type: 'display_clear',      },
-        */        
-        {   kind: 'LABEL',  text: 'On WUKONG I2C-DFrobot-0991',},
-        {   kind: 'BLOCK',  type: 'rgb_button_set_colour', },                
+        * {   kind: 'LABEL',  text: 'On WUKONG I2C-DFrobot-0991',},
+        * {   kind: 'BLOCK',  type: 'rgb_button_set_colour', },                
+        **/
         {   kind: 'LABEL',  text: 'Utils',              },        
         {   kind: 'BLOCK',  type: 'colour_from_rgb',    },
       ],
@@ -213,6 +215,26 @@ Blockly.defineBlocksWithJsonArray([
     "helpUrl": "",
   },
   {
+    "type": "reverse_motor",
+    "message0": "reverse the direction of motor %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "MOTOR",
+        "options": [
+          [   "M1",   "1" ],
+          [   "M2",   "2" ],
+          [   "M3",   "3" ],
+          [   "M4",   "4" ],
+        ]
+      }
+    ],
+    "previousStatement": null,          "nextStatement": null,
+    "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
+    "tooltip": "Reverse the direction of a given power",
+    "helpUrl": "",
+  },
+  {
     "type": "set_servo_angle",
     "message0": "set servo %1 to angle %2",
     "args0": [
@@ -235,6 +257,36 @@ Blockly.defineBlocksWithJsonArray([
     "previousStatement": null,          "nextStatement": null,
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Set the selected servo to a given angle",
+    "helpUrl": "",
+  },
+  {
+    "type": "set_servo_pulse_range",
+    "message0": "set servo %1 pulse ranging from %2 to %3",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "SERVO",
+        "options": [
+          [   "S0",   "0" ],
+          [   "S1",   "1" ],
+          [   "S2",   "2" ],
+          [   "S3",   "3" ],
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "MINPULSE",
+        "check": "Number",
+      },
+      {
+        "type": "input_value",
+        "name": "MAXPULSE",
+        "check": "Number",
+      }
+    ],
+    "previousStatement": null,          "nextStatement": null,
+    "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
+    "tooltip": "Set the selected servo pulse ranging into an interval",
     "helpUrl": "",
   },
   {
@@ -456,12 +508,50 @@ python.pythonGenerator.forBlock['set_motor_power'] = function(block, generator) 
   return code;
 }
 
+python.pythonGenerator.forBlock['reverse_motor'] = function(block, generator) { 
+  const dropdown_name = block.getFieldValue('MOTOR');
+  const idCode = 'wumons_motor'
+  const code = [
+    idCode+`${dropdown_name}.reverse()`, ""].join('\n');
+  generator.definitions_['import_wumons'] = [
+      '# Import the wumons library',
+      'import wumons'].join('\n');
+  generator.definitions_['connect_wum_motors'] = [
+      '#   Connect the four possible motors',
+      idCode+'1 = wumons.DCMotor(wumons.board.GP20, wumons.board.GP21)',
+      idCode+'2 = wumons.DCMotor(wumons.board.GP10, wumons.board.GP11)',
+      idCode+'3 = wumons.DCMotor(wumons.board.GP14, wumons.board.GP15)',
+      idCode+'4 = wumons.DCMotor(wumons.board.GP12, wumons.board.GP13)'].join('\n');  
+  return code;
+}
+
+
+
 python.pythonGenerator.forBlock['set_servo_angle'] = function(block, generator) { 
   const dropdown_name = block.getFieldValue('SERVO');
   const value_angle = generator.valueToCode(block, 'ANGLE', generator.ORDER_NONE) || 0;
   const idCode = 'wumons_servo'
   const code = [
     idCode+`${dropdown_name}.set_angle(${value_angle})`, ""].join('\n');
+  generator.definitions_['import_wumons'] = [
+      '# Import the wumons library',
+      'import wumons'].join('\n');
+  generator.definitions_['connect_wum_servos'] = [
+      '#   Connect the four possible servos',
+      idCode+'0 = wumons.Servo(wumons.board.GP0)',
+      idCode+'1 = wumons.Servo(wumons.board.GP1)',
+      idCode+'2 = wumons.Servo(wumons.board.GP2)',
+      idCode+'3 = wumons.Servo(wumons.board.GP3)'].join('\n');  
+  return code;
+}
+
+python.pythonGenerator.forBlock['set_servo_pulse_range'] = function(block, generator) { 
+  const dropdown_name = block.getFieldValue('SERVO');
+  const min_pulse = generator.valueToCode(block, 'MINPULSE', generator.ORDER_NONE) || 750;
+  const max_pulse = generator.valueToCode(block, 'MAXPULSE', generator.ORDER_NONE) || 2250;
+  const idCode = 'wumons_servo'
+  const code = [
+    idCode+`${dropdown_name}.set_pulse_width_range(${min_pulse},${max_pulse})`, ""].join('\n');
   generator.definitions_['import_wumons'] = [
       '# Import the wumons library',
       'import wumons'].join('\n');
@@ -516,7 +606,8 @@ python.pythonGenerator.forBlock['get_temperature_value'] = function(block, gener
 
 python.pythonGenerator.forBlock['display_clear'] = function(block, generator) { 
   const idCode = 'digit_display'
-  const code = idCode+'.clear()';
+  const code = [
+      idCode+'.clear()'].join('\n');
   generator.definitions_['import_wumons_display'] = [
       '# Import the wumons library - display',
       'from wumons_i2c.dfr_0646 import DFRobot_0646'].join('\n');
@@ -536,7 +627,8 @@ python.pythonGenerator.forBlock['display_clear'] = function(block, generator) {
 python.pythonGenerator.forBlock['rgb_button_set_colour'] = function(block, generator) { 
   const value_colour = generator.valueToCode(block, 'COLOUR', generator.ORDER_NONE) || 0;
   const idCode = 'rgb_button'
-  const code = idCode+`.set_RGB_color(${value_colour})`;
+  const code = [
+    idCode+`.set_RGB_color(${value_colour})`].join('\n');
   generator.definitions_['import_wumons_display'] = [
       '# Import the wumons library - RGB button',
       'from wumons_i2c.dfr_0991 import DFRobot_RGB_Button'].join('\n');
