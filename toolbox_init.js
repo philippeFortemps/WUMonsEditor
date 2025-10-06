@@ -528,11 +528,11 @@ const toolboxJson = {
 
     {   kind: 'SEP',    },
 
-    {
+    /*{
       // Variable Category
       kind: 'CATEGORY', name: 'Variables',  custom: 'VARIABLE',
       colour: '%{BKY_VARIABLES_HUE}',
-    },
+    },*/
     
     {
       // Variable Category

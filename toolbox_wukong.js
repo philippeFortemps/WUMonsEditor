@@ -131,7 +131,7 @@ toolboxJson.contents.push({
               },
             },
         },
-        {   kind: 'BLOCK',  type: 'reverse_motor',      },
+        /*{   kind: 'BLOCK',  type: 'reverse_motor',      },*/
         {   kind: 'BLOCK',  type: 'set_servo_angle',    
             inputs: {
               ANGLE: {
@@ -336,7 +336,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     "type": "set_motor_power",
-    "message0": "run motor %1 at power %2",
+    "message0": "run motor %1 at power %2\%",
     "args0": [
       {
         "type": "field_dropdown",
@@ -376,7 +376,7 @@ Blockly.defineBlocksWithJsonArray([
     ],
     "previousStatement": null,          "nextStatement": null,
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
-    "tooltip": "Reverse the direction of a given power",
+    "tooltip": "Reverse the direction of a given motor",
     "helpUrl": "",
   },
   {
