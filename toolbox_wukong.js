@@ -407,26 +407,6 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "set_servo_pulse_range",
     "message0": "set servo %1 pulse ranging from %2 to %3",
-    /*inputs: {
-      SERVO: {
-        shadow: {
-          type: 'field_dropdown',
-          fields: {NUM: 1},
-        },
-      },
-      MINPULSE: {
-        shadow: {
-          type: 'math_number',
-          fields: {NUM: 750},
-        },
-      },
-      MAXPULSE: {
-        shadow: {
-          type: 'math_number',
-          fields: {NUM: 2250},
-        },
-      },
-    },*/
     "args0": [
       {
         "type": "field_dropdown",
@@ -450,7 +430,7 @@ Blockly.defineBlocksWithJsonArray([
         "align": "RIGHT",
         "check": "Number",
       }
-    ],/**/
+    ],
     "previousStatement": null,          "nextStatement": null,
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Set the selected servo pulse ranging into an interval",
