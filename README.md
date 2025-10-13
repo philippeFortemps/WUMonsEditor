@@ -1,4 +1,4 @@
-To minify the tools: https://minify-js.com/
+To minify the editor tools: https://minify-js.com/
 
 To run the editor :  https://philippefortemps.github.io/WUMonsEditor    
 
