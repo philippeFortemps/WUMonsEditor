@@ -534,11 +534,11 @@ const toolboxJson = {
       colour: '%{BKY_VARIABLES_HUE}',
     },
     
-    {
+    /*{
       // Variable Category
       kind: 'CATEGORY', name: 'Variables (typed)',  custom: 'VARIABLE_DYNAMIC',
       colour: '%{BKY_VARIABLES_DYNAMIC_HUE}',
-    },
+    },*/
 
     {
       // Function Category
