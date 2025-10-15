@@ -730,6 +730,9 @@ python.pythonGenerator.forBlock['get_sensor_value'] = function(block, generator)
 python.pythonGenerator.forBlock['get_distance_value'] = function(block, generator) { 
   const idCode = 'distance_sensor'
   const code = idCode+'.get_distance()';
+  generator.definitions_['import_wumons'] = [
+      '# Import the wumons library',
+      'import wumons'].join('\n');
   generator.definitions_['import_wumons_distance'] = [
       '# Import the wumons library - distance',
       'from wumons_i2c.dfr_urm09 import DFRobot_URM09'].join('\n');
@@ -742,6 +745,9 @@ python.pythonGenerator.forBlock['get_distance_value'] = function(block, generato
 python.pythonGenerator.forBlock['get_temperature_value'] = function(block, generator) { 
   const idCode = 'distance_sensor'
   const code = idCode+'.get_temperature()';
+  generator.definitions_['import_wumons'] = [
+      '# Import the wumons library',
+      'import wumons'].join('\n');
   generator.definitions_['import_wumons_distance'] = [
       '# Import the wumons library - distance',
       'from wumons_i2c.dfr_urm09 import DFRobot_URM09'].join('\n');
@@ -776,6 +782,9 @@ python.pythonGenerator.forBlock['rgb_button_set_colour'] = function(block, gener
   const idCode = 'rgb_button'
   const code = [
     idCode+`.set_RGB_color(${value_colour})`].join('\n');
+  generator.definitions_['import_wumons'] = [
+      '# Import the wumons library',
+      'import wumons'].join('\n');
   generator.definitions_['import_wumons_display'] = [
       '# Import the wumons library - RGB button',
       'from wumons_i2c.dfr_0991 import DFRobot_RGB_Button'].join('\n');
