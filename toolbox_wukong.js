@@ -231,7 +231,7 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "current_time",
     "message0": "current value of internal clock",
-    "output": "float",
+    "output": "Number",
     "colour": '%{BKY_LOGIC_HUE}',
     "tooltip": "Return the current value of the internal clock in seconds",
     "helpUrl": "https://docs.circuitpython.org/en/latest/shared-bindings/time/#time.monotonic",      
@@ -450,7 +450,7 @@ Blockly.defineBlocksWithJsonArray([
         ]
       }
     ],
-    "output": "float",
+    "output": "Number",
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Get the value observed by a sensor",
     "helpUrl": "",
@@ -458,7 +458,7 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "get_distance_value",
     "message0": "value of measured distance",
-    "output": "float",
+    "output": "Number",
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Get the value measured by the distance sensor (in cm)",
     "helpUrl": "",
@@ -466,7 +466,7 @@ Blockly.defineBlocksWithJsonArray([
   {
     "type": "get_temperature_value",
     "message0": "value of measured temperature",
-    "output": "float",
+    "output": "Number",
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Get the value measured by the temperature sensor (in °C)",
     "helpUrl": "",
