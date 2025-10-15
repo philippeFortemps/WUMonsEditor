@@ -450,7 +450,7 @@ Blockly.defineBlocksWithJsonArray([
         ]
       }
     ],
-    "output": "number",
+    "output": "float",
     "colour": '%{BKY_CUSTOM_WUMONS_HUE}',
     "tooltip": "Get the value observed by a sensor",
     "helpUrl": "",
